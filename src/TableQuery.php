@@ -21,6 +21,8 @@ class TableQuery
 
     protected int $defaultPerPage = 15;
 
+    protected int $maxPerPage = 100;
+
     /** @var array<string, \Closure(\Illuminate\Database\Eloquent\Model): bool> */
     protected array $authorizationChecks = [];
 
@@ -72,6 +74,21 @@ class TableQuery
     public function defaultPerPage(int $perPage): static
     {
         $this->defaultPerPage = $perPage;
+
+        return $this;
+    }
+
+    /**
+     * Caps `per_page` — without this, a client could request an
+     * arbitrarily large page (bypassing the Vue UI, which never offers
+     * anything past its own page-size options) and force a needlessly
+     * expensive query. Applies to both the client-supplied value and
+     * `defaultPerPage()` itself, so raise both together if a table
+     * genuinely needs bigger pages than the default allows.
+     */
+    public function maxPerPage(int $maxPerPage): static
+    {
+        $this->maxPerPage = $maxPerPage;
 
         return $this;
     }
@@ -145,6 +162,7 @@ class TableQuery
 
         $perPage = (int) $request->input('per_page', $this->defaultPerPage);
         $perPage = $perPage > 0 ? $perPage : $this->defaultPerPage;
+        $perPage = min($perPage, $this->maxPerPage);
 
         $paginator = $query->paginate($perPage)->withQueryString();
 
