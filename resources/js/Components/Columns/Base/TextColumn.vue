@@ -8,16 +8,16 @@ import { getNestedValue } from '../../../support/getNestedValue'
 // invue/core's tailwind.content.js) — class strings living in a plain .js
 // module would never be seen and would get silently purged in consumer apps.
 const BADGE_CLASSES = {
-    gray: 'bg-gray-100 text-gray-700',
-    red: 'bg-red-100 text-red-700',
-    green: 'bg-green-100 text-green-700',
-    blue: 'bg-blue-100 text-blue-700',
-    yellow: 'bg-yellow-100 text-yellow-800',
-    amber: 'bg-amber-100 text-amber-800',
-    sky: 'bg-sky-100 text-sky-700',
-    rose: 'bg-rose-100 text-rose-700',
-    purple: 'bg-purple-100 text-purple-700',
-    pink: 'bg-pink-100 text-pink-700',
+    gray: 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300',
+    red: 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300',
+    green: 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300',
+    blue: 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300',
+    yellow: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300',
+    amber: 'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-300',
+    sky: 'bg-sky-100 text-sky-700 dark:bg-sky-900 dark:text-sky-300',
+    rose: 'bg-rose-100 text-rose-700 dark:bg-rose-900 dark:text-rose-300',
+    purple: 'bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300',
+    pink: 'bg-pink-100 text-pink-700 dark:bg-pink-900 dark:text-pink-300',
 }
 
 const props = defineProps({
@@ -181,7 +181,7 @@ async function copy() {
 
 <template>
     <div class="flex items-center gap-1.5">
-        <div v-if="resolvedDescription && descriptionPosition === 'above'" class="text-xs text-gray-400">
+        <div v-if="resolvedDescription && descriptionPosition === 'above'" class="text-xs text-gray-400 dark:text-gray-500">
             {{ resolvedDescription }}
         </div>
 
@@ -198,27 +198,27 @@ async function copy() {
             :href="resolvedUrl"
             :target="openInNewTab ? '_blank' : undefined"
             :rel="openInNewTab ? 'noopener noreferrer' : undefined"
-            class="text-green-700 hover:underline"
+            class="text-green-700 hover:underline dark:text-green-400"
             :class="[weightClass, wrap ? 'whitespace-normal' : 'whitespace-nowrap']"
         >
             {{ displayValue }}
         </a>
 
-        <span v-else class="text-gray-700" :class="[weightClass, wrap ? 'whitespace-normal' : 'whitespace-nowrap']">
+        <span v-else class="text-gray-700 dark:text-gray-300" :class="[weightClass, wrap ? 'whitespace-normal' : 'whitespace-nowrap']">
             {{ displayValue }}
         </span>
 
         <button
             v-if="copyable"
             type="button"
-            class="text-gray-400 hover:text-gray-600"
+            class="text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300"
             title="Copy"
             @click="copy"
         >
             ⧉
         </button>
 
-        <div v-if="resolvedDescription && descriptionPosition !== 'above'" class="text-xs text-gray-400">
+        <div v-if="resolvedDescription && descriptionPosition !== 'above'" class="text-xs text-gray-400 dark:text-gray-500">
             {{ resolvedDescription }}
         </div>
     </div>

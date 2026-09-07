@@ -44,7 +44,7 @@ function onChange(event) {
         type="checkbox"
         :checked="checked"
         :disabled="disabled"
-        class="h-4 w-4 rounded border border-gray-300 text-green-600 shadow-sm focus:ring-green-500"
+        class="h-4 w-4 rounded border border-gray-300 text-green-600 shadow-sm focus:ring-green-500 dark:border-gray-700"
         @change="onChange"
     />
 </template>

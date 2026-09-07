@@ -49,7 +49,7 @@ function toggle() {
         :aria-checked="enabled"
         :disabled="disabled"
         class="relative inline-flex h-5 w-9 shrink-0 items-center rounded-full transition-colors disabled:cursor-not-allowed disabled:opacity-50"
-        :class="enabled ? 'bg-green-600' : 'bg-gray-200'"
+        :class="enabled ? 'bg-green-600' : 'bg-gray-200 dark:bg-gray-700'"
         @click="toggle"
     >
         <span

@@ -59,7 +59,7 @@ const shapeClass = computed(() => (props.square ? 'rounded-none' : props.circula
     <div
         v-else
         :style="sizePx"
-        class="flex items-center justify-center bg-gray-100 text-gray-300"
+        class="flex items-center justify-center bg-gray-100 text-gray-300 dark:bg-gray-800 dark:text-gray-600"
         :class="shapeClass"
     >
         —

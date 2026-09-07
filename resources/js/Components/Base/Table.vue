@@ -229,28 +229,28 @@ const vIndeterminate = {
                 v-model="table.state.search"
                 type="search"
                 :placeholder="searchPlaceholder"
-                class="block w-full max-w-xs rounded-md border border-gray-300 px-3 py-1.5 text-sm shadow-sm focus:border-green-500 focus:ring-green-500"
+                class="block w-full max-w-xs rounded-md border border-gray-300 px-3 py-1.5 text-sm shadow-sm focus:border-green-500 focus:ring-green-500 dark:border-gray-700"
             />
 
             <slot name="filters" />
 
             <details v-if="hasToggleableColumns" class="relative ml-auto">
                 <summary
-                    class="cursor-pointer list-none rounded-md border border-gray-300 px-3 py-1.5 text-sm text-gray-600 select-none"
+                    class="cursor-pointer list-none rounded-md border border-gray-300 px-3 py-1.5 text-sm text-gray-600 select-none dark:border-gray-700 dark:text-gray-400"
                 >
                     Columns
                 </summary>
                 <div
-                    class="absolute right-0 z-10 mt-1 w-48 rounded-md border border-gray-200 bg-white p-2 shadow-lg"
+                    class="absolute right-0 z-10 mt-1 w-48 rounded-md border border-gray-200 bg-white p-2 shadow-lg dark:border-gray-700 dark:bg-gray-800"
                 >
                     <label
                         v-for="column in toggleableColumns"
                         :key="column.field"
-                        class="flex items-center gap-2 rounded px-1 py-1 text-sm text-gray-700 hover:bg-gray-50"
+                        class="flex items-center gap-2 rounded px-1 py-1 text-sm text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700"
                     >
                         <input
                             type="checkbox"
-                            class="h-4 w-4 rounded border border-gray-300 text-green-600 shadow-sm focus:ring-green-500"
+                            class="h-4 w-4 rounded border border-gray-300 text-green-600 shadow-sm focus:ring-green-500 dark:border-gray-700"
                             :checked="!manuallyHidden.has(column.field)"
                             @change="toggleColumn(column.field)"
                         />
@@ -268,14 +268,14 @@ const vIndeterminate = {
             @success="table.clearSelection()"
         />
 
-        <div class="overflow-x-auto rounded-md border border-gray-200">
-            <table class="min-w-full divide-y divide-gray-200 text-sm">
-                <thead class="bg-gray-50">
+        <div class="overflow-x-auto rounded-md border border-gray-200 dark:border-gray-800">
+            <table class="min-w-full divide-y divide-gray-200 text-sm dark:divide-gray-800">
+                <thead class="bg-gray-50 dark:bg-gray-800">
                     <tr>
                         <th v-if="selectable" scope="col" class="w-10 px-3 py-2">
                             <input
                                 type="checkbox"
-                                class="h-4 w-4 rounded border border-gray-300 text-green-600 shadow-sm focus:ring-green-500"
+                                class="h-4 w-4 rounded border border-gray-300 text-green-600 shadow-sm focus:ring-green-500 dark:border-gray-700"
                                 :checked="allRowsSelected"
                                 v-indeterminate="someRowsSelected && !allRowsSelected"
                                 @change="table.toggleSelectAll()"
@@ -285,14 +285,14 @@ const vIndeterminate = {
                             v-for="column in visibleColumns"
                             :key="column.field"
                             scope="col"
-                            class="px-3 py-2 text-xs font-semibold tracking-wide text-gray-500 uppercase"
+                            class="px-3 py-2 text-xs font-semibold tracking-wide text-gray-500 uppercase dark:text-gray-400"
                             :class="[alignClass(column.align), column.sortable ? 'cursor-pointer select-none' : '']"
                             :style="column.width ? { width: column.width } : null"
                             @click="column.sortable && table.toggleSort(column.field)"
                         >
                             <span class="inline-flex items-center gap-1">
                                 {{ column.label }}
-                                <span v-if="column.sortable" class="text-gray-400">
+                                <span v-if="column.sortable" class="text-gray-400 dark:text-gray-500">
                                     <template v-if="table.state.sort === column.field">{{
                                         table.state.direction === 'asc' ? '↑' : '↓'
                                     }}</template>
@@ -302,9 +302,9 @@ const vIndeterminate = {
                         </th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-gray-100 bg-white">
+                <tbody class="divide-y divide-gray-100 bg-white dark:divide-gray-800 dark:bg-gray-900">
                     <tr v-if="rows.length === 0">
-                        <td :colspan="(visibleColumns.length || 1) + (selectable ? 1 : 0)" class="px-3 py-6 text-center text-gray-400">
+                        <td :colspan="(visibleColumns.length || 1) + (selectable ? 1 : 0)" class="px-3 py-6 text-center text-gray-400 dark:text-gray-500">
                             {{ emptyMessage }}
                         </td>
                     </tr>
@@ -312,7 +312,7 @@ const vIndeterminate = {
                         <td v-if="selectable" class="px-3 py-2">
                             <input
                                 type="checkbox"
-                                class="h-4 w-4 rounded border border-gray-300 text-green-600 shadow-sm focus:ring-green-500"
+                                class="h-4 w-4 rounded border border-gray-300 text-green-600 shadow-sm focus:ring-green-500 dark:border-gray-700"
                                 :checked="table.isSelected(row.id)"
                                 @change="table.toggleSelect(row.id)"
                             />
@@ -330,13 +330,13 @@ const vIndeterminate = {
             </table>
         </div>
 
-        <div v-if="meta" class="mt-3 flex flex-wrap items-center justify-between gap-3 text-sm text-gray-500">
+        <div v-if="meta" class="mt-3 flex flex-wrap items-center justify-between gap-3 text-sm text-gray-500 dark:text-gray-400">
             <p>{{ paginationSummary }}</p>
             <div class="flex items-center gap-1">
                 <button
                     type="button"
                     :disabled="table.state.page <= 1"
-                    class="rounded-md border border-gray-300 px-2.5 py-1 text-gray-600 disabled:cursor-not-allowed disabled:opacity-40"
+                    class="rounded-md border border-gray-300 px-2.5 py-1 text-gray-600 disabled:cursor-not-allowed disabled:opacity-40 dark:border-gray-700 dark:text-gray-400"
                     @click="table.state.page--"
                 >
                     Prev
@@ -344,7 +344,7 @@ const vIndeterminate = {
                 <button
                     type="button"
                     :disabled="!hasNextPage"
-                    class="rounded-md border border-gray-300 px-2.5 py-1 text-gray-600 disabled:cursor-not-allowed disabled:opacity-40"
+                    class="rounded-md border border-gray-300 px-2.5 py-1 text-gray-600 disabled:cursor-not-allowed disabled:opacity-40 dark:border-gray-700 dark:text-gray-400"
                     @click="table.state.page++"
                 >
                     Next

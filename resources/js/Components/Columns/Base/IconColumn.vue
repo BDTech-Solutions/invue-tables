@@ -4,16 +4,16 @@ import { Icon } from 'invue/core'
 import { getNestedValue } from '../../../support/getNestedValue'
 
 const TEXT_COLOR_CLASSES = {
-    gray: 'text-gray-400',
-    red: 'text-red-500',
-    green: 'text-green-600',
-    blue: 'text-blue-500',
-    yellow: 'text-yellow-500',
-    amber: 'text-amber-500',
-    sky: 'text-sky-500',
-    rose: 'text-rose-500',
-    purple: 'text-purple-500',
-    pink: 'text-pink-500',
+    gray: 'text-gray-400 dark:text-gray-500',
+    red: 'text-red-500 dark:text-red-400',
+    green: 'text-green-600 dark:text-green-400',
+    blue: 'text-blue-500 dark:text-blue-400',
+    yellow: 'text-yellow-500 dark:text-yellow-400',
+    amber: 'text-amber-500 dark:text-amber-400',
+    sky: 'text-sky-500 dark:text-sky-400',
+    rose: 'text-rose-500 dark:text-rose-400',
+    purple: 'text-purple-500 dark:text-purple-400',
+    pink: 'text-pink-500 dark:text-pink-400',
 }
 
 const props = defineProps({

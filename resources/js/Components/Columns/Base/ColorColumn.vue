@@ -30,9 +30,9 @@ async function copy() {
 
 <template>
     <div v-if="value" class="flex items-center gap-2">
-        <span class="h-5 w-5 rounded border border-gray-200" :style="{ backgroundColor: value }" />
-        <span class="font-mono text-xs text-gray-500">{{ value }}</span>
-        <button v-if="copyable" type="button" class="text-gray-400 hover:text-gray-600" title="Copy" @click="copy">
+        <span class="h-5 w-5 rounded border border-gray-200 dark:border-gray-800" :style="{ backgroundColor: value }" />
+        <span class="font-mono text-xs text-gray-500 dark:text-gray-400">{{ value }}</span>
+        <button v-if="copyable" type="button" class="text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300" title="Copy" @click="copy">
             ⧉
         </button>
     </div>

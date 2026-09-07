@@ -28,8 +28,8 @@ const resolvedActions = computed(() => (typeof props.actions === 'function' ? pr
 </script>
 
 <template>
-    <div v-if="count > 0" class="mb-3 flex flex-wrap items-center gap-3 rounded-md border border-gray-200 bg-gray-50 px-3 py-2">
-        <span class="text-sm font-medium text-gray-700">{{ count }} selected</span>
+    <div v-if="count > 0" class="mb-3 flex flex-wrap items-center gap-3 rounded-md border border-gray-200 bg-gray-50 px-3 py-2 dark:border-gray-800 dark:bg-gray-800">
+        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{{ count }} selected</span>
         <div class="flex flex-wrap gap-2">
             <ActionButton
                 v-for="(action, index) in resolvedActions"

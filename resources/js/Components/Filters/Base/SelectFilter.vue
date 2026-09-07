@@ -44,12 +44,12 @@ function onChange(event) {
 </script>
 
 <template>
-    <label class="flex items-center gap-2 text-sm text-gray-600">
+    <label class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
         <span v-if="label">{{ label }}</span>
         <select
             :value="modelValue"
             :multiple="multiple"
-            class="rounded-md border border-gray-300 px-3 py-1.5 text-sm shadow-sm focus:border-green-500 focus:ring-green-500"
+            class="rounded-md border border-gray-300 px-3 py-1.5 text-sm shadow-sm focus:border-green-500 focus:ring-green-500 dark:border-gray-700"
             @change="onChange"
         >
             <option v-if="!multiple" value="">{{ placeholder }}</option>
