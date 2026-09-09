@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { formatDate, timeAgo } from '../../../support/formatDate'
 import { getNestedValue } from '../../../support/getNestedValue'
+import { isSafeUrl } from '../../../support/isSafeUrl'
 
 // Kept inline (not in a shared .js support file) on purpose: Tailwind's JIT
 // scanner only globs `.vue` files inside vendor/invue/** (see
@@ -160,9 +161,11 @@ const displayValue = computed(() => {
     return text
 })
 
-const resolvedUrl = computed(() =>
-    typeof props.url === 'function' ? props.url(rawValue.value, props.row) : props.url,
-)
+const resolvedUrl = computed(() => {
+    const url = typeof props.url === 'function' ? props.url(rawValue.value, props.row) : props.url
+
+    return isSafeUrl(url) ? url : null
+})
 
 const resolvedDescription = computed(() =>
     typeof props.description === 'function' ? props.description(rawValue.value, props.row) : props.description,

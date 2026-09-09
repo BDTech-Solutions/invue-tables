@@ -1,6 +1,7 @@
 <script setup>
 import { computed } from 'vue'
 import { getNestedValue } from '../../../support/getNestedValue'
+import { isSafeUrl } from '../../../support/isSafeUrl'
 
 const props = defineProps({
     row: {
@@ -37,7 +38,11 @@ const props = defineProps({
     },
 })
 
-const src = computed(() => getNestedValue(props.row, props.field) || props.defaultUrl)
+const src = computed(() => {
+    const value = getNestedValue(props.row, props.field) || props.defaultUrl
+
+    return isSafeUrl(value) ? value : null
+})
 
 const sizePx = computed(() => ({
     width: typeof props.width === 'number' ? `${props.width}px` : props.width,
